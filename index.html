@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>产业链公司树状速查</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="title-block">
+        <h1>产业链公司树状速查</h1>
+        <p id="sourceLine"></p>
+      </div>
+      <div class="stats" id="stats"></div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel search-panel">
+        <label class="search-wrap">
+          <span>查询个股</span>
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="输入公司名、代码或批注关键词"
+            autocomplete="off"
+          />
+        </label>
+        <div class="section-head compact">
+            <h2>匹配公司</h2>
+            <button class="ghost" id="resetBtn" type="button">清除选择</button>
+        </div>
+        <div class="company-list" id="companyList"></div>
+      </aside>
+
+      <section class="panel tree-panel">
+        <div class="tree-header">
+          <div>
+            <h2>产业链分支</h2>
+            <p id="treeHint"></p>
+          </div>
+          <div class="legend">
+            <span><i class="legend-hit"></i>命中分支</span>
+            <span><i class="legend-related"></i>上级路径</span>
+          </div>
+        </div>
+        <div class="tree-scroll" id="treeView"></div>
+      </section>
+
+      <aside class="panel detail-panel" id="detailPanel">
+        <div class="empty-detail">搜索或选择一家公司</div>
+      </aside>
+    </main>
+
+    <script src="./all-industries-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
