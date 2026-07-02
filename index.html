@@ -12,7 +12,11 @@
         <h1>产业链公司树状速查</h1>
         <p id="sourceLine"></p>
       </div>
-      <div class="stats" id="stats"></div>
+      <div class="top-actions">
+        <div class="stats" id="stats"></div>
+        <button class="ghost" id="maintainToggleBtn" type="button">维护模式</button>
+        <button class="copy-btn" id="saveOnlineBtn" type="button" hidden disabled>保存到线上</button>
+      </div>
     </header>
 
     <main class="layout">
@@ -51,6 +55,117 @@
         <div class="empty-detail">搜索或选择一家公司</div>
       </aside>
     </main>
+
+    <div class="modal-backdrop" id="relationModal" hidden>
+      <section class="edit-modal" role="dialog" aria-modal="true" aria-labelledby="relationModalTitle">
+        <div class="modal-head">
+          <div>
+            <h2 id="relationModalTitle">新增归属</h2>
+            <p id="relationModalHint"></p>
+          </div>
+          <button class="ghost icon-text-btn" id="closeRelationModalBtn" type="button">关闭</button>
+        </div>
+
+        <div class="edit-form">
+          <label class="edit-field">
+            <span>公司</span>
+            <input id="editCompanyInput" type="search" placeholder="输入公司名，例如寒武纪" autocomplete="off" />
+          </label>
+          <div class="edit-suggestions" id="editCompanySuggestions"></div>
+
+          <div class="edit-two-col">
+            <label class="edit-field">
+              <span>代码</span>
+              <input id="editCodeInput" type="text" placeholder="可选" />
+            </label>
+            <label class="edit-field">
+              <span>全称/别名</span>
+              <input id="editFullNameInput" type="text" placeholder="可选" />
+            </label>
+          </div>
+
+          <label class="edit-field">
+            <span>产业</span>
+            <select id="editIndustrySelect"></select>
+          </label>
+
+          <div class="edit-field">
+            <span>添加方式</span>
+            <div class="mode-switch">
+              <label>
+                <input type="radio" name="editBranchMode" value="existing" checked />
+                <span>加到现有分支</span>
+              </label>
+              <label>
+                <input type="radio" name="editBranchMode" value="new" />
+                <span>新建分支</span>
+              </label>
+            </div>
+          </div>
+
+          <label class="edit-field" id="existingBranchField">
+            <span>现有分支</span>
+            <select id="editBranchSelect"></select>
+          </label>
+
+          <div id="newBranchFields" hidden>
+            <label class="edit-field">
+              <span>新分支放在</span>
+              <select id="editParentSelect"></select>
+            </label>
+            <label class="edit-field">
+              <span>新分支名称</span>
+              <input id="editNewBranchInput" type="text" placeholder="例如 推理芯片 / 卫星互联网终端" />
+            </label>
+          </div>
+
+          <label class="edit-field">
+            <span>入选原因</span>
+            <textarea id="editReasonInput" rows="8" placeholder="写清楚为什么这家公司属于该产业链分支"></textarea>
+          </label>
+
+          <div class="edit-two-col">
+            <label class="edit-field">
+              <span>来源</span>
+              <input id="editSourceInput" type="text" placeholder="公告 / 年报 / 调研，可选" />
+            </label>
+            <label class="edit-field">
+              <span>日期</span>
+              <input id="editDateInput" type="date" />
+            </label>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="ghost" id="cancelRelationBtn" type="button">取消</button>
+          <button class="copy-btn" id="saveRelationBtn" type="button">加入数据</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="modal-backdrop" id="tokenModal" hidden>
+      <section class="token-modal" role="dialog" aria-modal="true" aria-labelledby="tokenModalTitle">
+        <div class="modal-head">
+          <div>
+            <h2 id="tokenModalTitle">连接 GitHub</h2>
+            <p>粘贴只授权 industry-browser 仓库的 token，用来把更新保存到线上。</p>
+          </div>
+          <button class="ghost icon-text-btn" id="closeTokenModalBtn" type="button">关闭</button>
+        </div>
+        <label class="edit-field">
+          <span>GitHub token</span>
+          <input id="githubTokenInput" type="password" placeholder="github_pat_..." autocomplete="off" />
+        </label>
+        <label class="token-remember">
+          <input id="rememberTokenInput" type="checkbox" checked />
+          <span>记住在这台浏览器里</span>
+        </label>
+        <div class="modal-actions">
+          <button class="ghost" id="cancelTokenBtn" type="button">取消</button>
+          <button class="copy-btn" id="confirmTokenBtn" type="button">保存到 GitHub</button>
+        </div>
+      </section>
+    </div>
 
     <script src="./all-industries-data.js"></script>
     <script src="./app.js"></script>
