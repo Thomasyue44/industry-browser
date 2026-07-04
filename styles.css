@@ -589,6 +589,15 @@ h2 {
   border-radius: 8px;
   padding: 7px 8px;
   background: #fbfcfd;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+button.path-summary {
+  width: 100%;
+  appearance: none;
+  cursor: pointer;
 }
 
 .path-summary strong {
@@ -601,6 +610,20 @@ h2 {
 .path-summary span {
   color: var(--teal);
   font-weight: 720;
+}
+
+.detail-toggle {
+  gap: 4px;
+  cursor: pointer;
+}
+
+.section-toggle {
+  font-weight: 820;
+  line-height: 1;
+}
+
+.industry-detail-body {
+  margin-top: 8px;
 }
 
 .detail-section {
@@ -1208,6 +1231,30 @@ h2 {
   border-color: color-mix(in srgb, var(--theme-line) 42%, var(--line));
   background: linear-gradient(90deg, var(--theme-soft), #fff 82%);
   box-shadow: inset 4px 0 0 var(--theme);
+  transition:
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    background 140ms ease,
+    transform 140ms ease;
+}
+
+.path-summary:hover {
+  border-color: var(--theme);
+  box-shadow:
+    inset 4px 0 0 var(--theme),
+    0 0 0 3px color-mix(in srgb, var(--theme) 12%, transparent),
+    var(--shadow-tight);
+}
+
+.path-summary.active {
+  border-color: var(--theme);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--theme-soft) 82%, #fff), #fff 72%),
+    #fff;
+  box-shadow:
+    inset 6px 0 0 var(--theme),
+    0 0 0 3px color-mix(in srgb, var(--theme) 18%, transparent),
+    var(--shadow-tight);
 }
 
 .path-summary strong {
@@ -1217,6 +1264,21 @@ h2 {
 
 .path-summary span {
   color: var(--theme-strong);
+}
+
+.detail-toggle {
+  border-color: color-mix(in srgb, var(--theme-line, var(--line)) 46%, transparent);
+  background: color-mix(in srgb, var(--theme-softer, var(--soft)) 78%, #fff);
+  color: var(--theme-strong);
+}
+
+.detail-toggle:hover {
+  border-color: var(--theme);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme) 12%, transparent);
+}
+
+.industry-detail.collapsed {
+  padding-bottom: 2px;
 }
 
 .detail-section {

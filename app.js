@@ -30,6 +30,52 @@ const INDUSTRY_THEMES = [
   { hue: 340, saturation: 54, lightness: 47 },
 ];
 
+const PINYIN_INITIAL_GROUPS = {
+  a: "傲凹埃奥安岸按昂暗案氨澳爱璈癌碍翱胺艾铵阿鞍",
+  b: "不丙伯伴佰便保倍八兵冰别剥办勃包北半博卜变吡坂坝埔埠堡壁备奔孢宝宾巴币布帮并弊彼必扁扮把报拌拔拜拨捌捕搏搬摆播本杯板柏标棒榜步比波泵渤滨焙爆版玻班病白百碑碧磅笔箔绑编背脖臂舶芭苯蔽薄蚌补表被豹贝辨边遍避邦部钡钣钯钵铂铋闭雹霸靶饱饼驳鲍鼻",
+  c: "串乘产从仓传伺侧促倡偿储催充册冲凑出创初刺厂厨参叉吹呈唱场垂城处嫦存宠宸察寸尘尝尺层崇川巢差常床彩彻慈成才承抄抽拆持措掺插撑撮操擦敞昌春昶晟晨曾朝材村查柴楚槽橙次此残氚池沉沧测淳滁潮澄灿猜珵瓷畅畴疵础磁称程穿窗策筹篡簇粗糙纯绸翠聪臣舱船茨茶草菜萃藏虫蝉衬裁触词诚财赐赤超车辰迟醇醋采钞铖铲错阐除雏餐驰齿",
+  d: "丁东丹代但低倒党兜典冻刀到动单叠吊吨地垫埭堆多大奠定对导岛岱帝带底店度弟弹当待得德惰懂戴打抖抵担挡搭敦斗断旦杜栋档段毒氘氮洞涤淀渡灯点狄独电甸登的盗盾督短碘端第等答舵荻董蛋蝶订读调谛豆贷达迪迭递逮道邓都钉锭锻镀队顶顿颠黛鼎",
+  e: "二俄儿娥尔峨恩恶而耳贰铒额",
+  f: "丰付份仿伏伐佛傅凡凤分副反发否啡坊复夫孚孵富封峰帆幅府废弗房抚放方服氟沸法泛浮烽犯矾砜福符粉繁纷纺缝翻肤肥腐芬芳范菲蜂覆访负费赋赴辅辐返酚釜钒锋阀阜防附非风飞馥",
+  g: "个亘估供光公共关冈冠刚刮割功勾古各告咕咯哥固国圭坩埚够官宫寡岗工巩干广归惯感戈挂搞改攻故敢更杆杠构果柜根格桂概歌毂沟港滚灌狗瓜甘皋盖硅秆稿管纲给缸罐耕股膏莞观规诡该谷贡购贯贵赣赶跟轨辊过酐钙钢钴铬锅锆镉阁隔革顾馆骨骼高鸽鹄鼓",
+  h: "乎互亨伙会何候凰函划化卉华厚号合后含呼和哈唤喉回坏夯好孩宏害寒寰幻弘弧很徽怀恒恢患惑惠慧或户护挥换昊昏晖杭核横欢毁毫氦汇汉沪河泓洪活浩海涵淮混湖滑瀚灏火灰烘焊煌环珩画痕皇盒磺禾簧红绘缓罕翰耗胡航花荒荷获蘅虎虹衡话豪货赫轰辉还霍韩鸿鹤黄黑",
+  j: "举久九井交京仅今介件价佳俊俱借假健具兼冀军决净减几击剂剑剧剪加劲匠即卷及句叫吉君啾嘉圾均坚基境夹奖季家寂寄将尖就尽局居届巨己建径急戒截技拣挤据捷掘接揭搅救教斤既旧晋景晶暨机杰极架柬桨检楫歼江洁津浆浇济浚浸渐激炬焦玑玖珈璟甲界畸疆疾皆监矩矫碱禁积秸稷稽究竞竣竭筋简箭籍精紧纠级纪经结绝绞继绩缴聚肌肩胶脊脚腱舰艰节茄荆荐菁菌街见觉角解警计记讲距践跻轿较辑近进迦迹酒酵金鉴钜钧钾铰锦键镓镜间阶际降集静韭颈驾骄骏鸡",
+  k: "亏克况凯刊刻勘卡口可咔咖喀困块坤堪壳孔客宽库康开快恐扣扩抗抠括拷捆控旷昆枯柯框棵楷槛款氪珂盔看矿科空窥考肯苛课跨酷铠阔靠颗馈髁髋鲲",
+  l: "两临丽乐乱了亮仑令伦例六兰冷凌列刘利力劣励劳勒卢卤历另噜垃垄垒娄孪履岚岭帘廉廊录律徕拉拦揽敛料旅朗李来林栏栗梁棱楼榴氯泸洛流浏浪涝淋溧滤滦漏潞澜灵炉炼烈犁狸狼猎率玲理璃留略疗瘤砺硫磷礼禄离立篮类粒粮累纶练络绫绿缆罗老聆聊联脸腊良莱莲菱萝落蓝蕾虑螺裂裸览论赁赖路轮辆辽连逻邻郎里量铃铝链锂镧镭闾陆陇陵隆隶零雷露领馏骆骊鲁鳞鹭鹿麟黎龙",
+  m: "么买亩们免募卖名命咪喵埋墨妙姆媒孟密岷帽幕慢懋描摩摸敏明曼木末枚某梅梦棉模母每毛民沐没沫满漫灭煤牧猛猫玛玫盟目眉眠睦瞄矛码磨秒秘米绵缅美脉膜芒苗茂茅茗茫莓莫萌蒙蔓蚂蜜蟒觅谋貌贸迈醚钼铭锚锰镁门闵霉面马魅魔鸣麦麻",
+  n: "乃内农凝努南呐囊奈女娜宁尼尿年念扭拟拿暖楠泥浓涅牛糯纳纽耐能脑讷诺逆那钕钠铌镍难鸟",
+  o: "偶欧殴耦鸥",
+  p: "佩偏凭判剖匹品喷坡坯培媲屏帕平庞扑批抛披拍拼排攀旁普曝朋泊泡派浦湃漂澎濮炮爬片牌璞瓶疲皮盆盘破硼碰票篇篷聘胖膨苹莆蓬蟠评谱贫赔跑辟迫郫配铍铺陪频骗鹏",
+  q: "七且丘乔乾亲企侵倾全其切券前勤区千却去取启器圈墙奇契屈岖崎嵌巧庆弃强恰情抢撬擎敲旗曲期权枪桥欺歧气氢氰求汘汽沁泉洽清渠漆潜牵球琴确碁秋秦穹窃签缺群腔衢裙请起趋趣躯轻迁遣酋醛钎钦钱钳铅雀青顷驱骑麒黔齐",
+  r: "人仁仍任儒入冉冗刃壤如容嵘弱扰日染柔榕润溶热然熔燃瑞睿纫绒绕肉若荣蓉融认让软铷锐韧",
+  s: "三上世丝书事什仕伸似使俗兽刷刹剩势十升厦双受史司售商善四圣塑塞士声失始孙守实审室宿寿射少尚属山岁崧市帅师式思慎所扇手扫拾损授搜摄摔收散数斯施时昇是曙朔术杀杉束松枢树栓桑梭梳森殊氏水汕沈沙涉深渗湿溯烧熟熵燧狩狮瑟甚生申疏盛省睡瞬矢石砂砷硕碎示社神私税竖筛算素索纱绍绳缩署肃胜舍舒舜艘色苏萨蔬虽蚀蛇蜀衰视讼设识诉试诗说赛身输述送适速遂邵酸释钐铯锁锶闪陕随隧韶顺飒食饰首驶骚鼠",
+  t: "亭他体停兔凸厅台同吐吞听唐团图土坍坛坦堂塌塔塘填天太头套它屯岹庭廷彤态托投抬拓拖挑探推提替条桃桐梯毯汤泰涂涛淘添滩潭炭特田痛瞳碳突童筒糖统羰胎脱腾腿艇誊讨谈贴跳踏退逃透途通酮钛钽铁铜锑闼陀陶韬题驼",
+  w: "万为乌五伍伟伪位务卧卫危吴吾味哇唯喂围外委威完尾屋崴巫弯往微忘悟惟戊我挖挝握文无旺晚望未梧武污沃涡温渭湾潍烷物王玩玮瓦皖稳窝纬纹维网腕芜蔚蜗误违钨问闻雾韦",
+  x: "下习乡些享仙信修像兄先兴写削匈匣协卸县向吸响喜嗅型夏学宣寻小峡巡希席序形徐循心性息悉悬想戏携效新旋旬旭昕星显晓晰曦析枭校械橡欣泄洗消渲湘溪溴炘烯熊熙犀狭猇献玄现瑕璇相矽硒硝祥禧秀稀穴笑箱系纤线细绣绪续羲翔胁胸膝芯萧萱蓄虚虛血行衔襄西训讯许询详谐谢象贤轩辖辛迅选逊逍邢酰醒鑫铣销锈锌锡限险陷隙雄雪需霄鞋项须香馨骁鲜",
+  y: "一与业严义乙也予于云亚亦亿以仪伊优余依俞允元养冶勇匀医印压原友右叶员哑因园圆垣域壹夜央夷奕妤姚娱宇宜寓尤屹岩岳崖已应延异引彦影役御忆忧怡悠悦意愚愿扬抑拥援摇昀易映昱晕月有杨样椅榆殷毅氧永油沿洋涌液渔渝游源溢演瀛烟熠燕牙玉用由疑疫盈益盐眼研硬禹移窑粤约缘羊羽翌翼耀耘育腰舆艺苑英茵药萤营蕴蚁衍衣裕要言誉议译语诱谊豫赢越跃轧轶运远逸遇遗遥邀邑邮野钥钰铀铟银阅阳阴院隅隐雁雅雨音韵页预颖饮验鸦鹰",
+  z: "专中主之争仲众住作侦债值做兆兹再冢准则制助卓占只召周咨哲啁嘴噪在圳址坐坠增壮妆姿子字宗宙寨尊展崭州左帐庄座张彰征志总战扎执找抓折招择拽指振捉掌摘撞撰支政整斩族旨早昭智暂最朱杂枝柘柱栅栈株桌桩植止正殖毡治注泽洲浙涨淄渍渣滋滞漳灶灾炸照燥状珠甄症直真着瞻知祖种租窄站章竹筑粘紫纵纸组织终综绽罩罪置者职肇肘肢肿胀脂脏自至致臻舟芝著蒸蛛蜘装证诈诊诸责账质贮资赞赠走赵足踪转轴载这追逐造遵郑酯醉重针钟钻铸锗锥镇长闸阵阻障震驻",
+};
+
+const PINYIN_POLYPHONE_INITIALS = {
+  长: "cz",
+  重: "cz",
+  行: "hx",
+  乐: "ly",
+  厦: "sx",
+  曾: "cz",
+  朝: "cz",
+  藏: "cz",
+  单: "ds",
+  解: "jx",
+};
+
+const PINYIN_INITIALS_BY_CHAR = Object.entries(PINYIN_INITIAL_GROUPS).reduce((result, [letter, chars]) => {
+  for (const char of chars) {
+    result[char] = result[char] ? `${result[char]}${letter}` : letter;
+  }
+  return result;
+}, {});
+
 const ORIGINAL_DATA_TEXT = serializeData(DATA);
 let lastSyncedDataText = ORIGINAL_DATA_TEXT;
 
@@ -45,6 +91,8 @@ const state = {
   changes: [],
   editingRelationId: "",
   editSelectedCompanyId: "",
+  detailIndustryFilterId: "",
+  collapsedDetailIndustryIds: new Set(),
 };
 
 let companiesById = new Map();
@@ -138,6 +186,34 @@ function compact(value) {
   return String(value || "")
     .replace(/\s+/g, "")
     .toLowerCase();
+}
+
+function pinyinLettersForChar(char) {
+  if (/^[a-z0-9]$/i.test(char)) return [char.toLowerCase()];
+  const letters = unique(
+    `${PINYIN_INITIALS_BY_CHAR[char] || ""}${PINYIN_POLYPHONE_INITIALS[char] || ""}`.split(""),
+  );
+  return letters.length ? letters : [];
+}
+
+function pinyinInitialVariants(value, maxVariants = 32) {
+  let variants = [""];
+  for (const char of String(value || "")) {
+    const letters = pinyinLettersForChar(char);
+    if (!letters.length) continue;
+    const next = [];
+    for (const variant of variants) {
+      for (const letter of letters) {
+        next.push(`${variant}${letter}`);
+      }
+    }
+    variants = unique(next).slice(0, maxVariants);
+  }
+  return variants.filter(Boolean);
+}
+
+function pinyinInitialValues(values) {
+  return unique(values.flatMap((value) => pinyinInitialVariants(value)));
 }
 
 function escapeHtml(value) {
@@ -257,27 +333,42 @@ function makeCompanyId(name) {
   return `${base}_${suffix}`;
 }
 
-function findCompanyByInput(value) {
-  const query = compact(value);
-  if (!query) return undefined;
-  return DATA.companies.find((company) => {
-    const values = [
-      company.name,
-      ...(company.aliases || []),
-      ...(company.codes || []),
-      ...(company.fullNames || []),
-    ];
-    return values.some((item) => compact(item) === query);
-  });
-}
-
-function companyText(company) {
+function companyIdentityValues(company) {
   return [
     company.name,
     ...(company.aliases || []),
     ...(company.codes || []),
     ...(company.fullNames || []),
+  ];
+}
+
+function companyInitials(company) {
+  return company.initials?.length
+    ? company.initials
+    : pinyinInitialValues([...companyIdentityValues(company), ...(company.industries || [])]);
+}
+
+function companyInitialScore(company, query) {
+  const initials = companyInitials(company);
+  if (initials.some((value) => value === query)) return 3;
+  if (initials.some((value) => value.startsWith(query))) return 2;
+  if (initials.some((value) => value.includes(query))) return 1;
+  return 0;
+}
+
+function findCompanyByInput(value) {
+  const query = compact(value);
+  if (!query) return undefined;
+  return DATA.companies.find((company) => {
+    return companyIdentityValues(company).some((item) => compact(item) === query);
+  });
+}
+
+function companyText(company) {
+  return [
+    ...companyIdentityValues(company),
     ...(company.industries || []),
+    company.initialText || companyInitials(company).join(" "),
   ]
     .join(" ")
     .trim();
@@ -291,9 +382,12 @@ function companyMatches(value) {
     .sort((a, b) => {
       const an = compact(a.name);
       const bn = compact(b.name);
+      const aInitial = companyInitialScore(a, query);
+      const bInitial = companyInitialScore(b, query);
       return (
         Number(bn === query) - Number(an === query) ||
         Number(bn.startsWith(query)) - Number(an.startsWith(query)) ||
+        bInitial - aInitial ||
         b.relationIds.length - a.relationIds.length ||
         a.name.localeCompare(b.name, "zh")
       );
@@ -315,16 +409,16 @@ function rebuildSearchText(company) {
     .filter(Boolean)
     .map((relation) => `${relation.industry} ${relation.pathLabel} ${relation.value} ${relation.comment} ${relation.cell}`)
     .join(" ");
+  company.initials = pinyinInitialValues([...companyIdentityValues(company), ...(company.industries || [])]);
+  company.initialText = compact(company.initials.join(" "));
   company.searchText = compact(
     [
-      company.name,
-      ...(company.aliases || []),
-      ...(company.codes || []),
-      ...(company.fullNames || []),
+      ...companyIdentityValues(company),
       ...(company.regions || []),
       ...(company.websites || []),
       ...(company.notes || []),
       ...(company.industries || []),
+      company.initialText,
       relationText,
     ].join(" "),
   );
@@ -450,6 +544,11 @@ function companyRelations(companyId) {
   return relationsByCompany.get(companyId) || [];
 }
 
+function resetDetailView() {
+  state.detailIndustryFilterId = "";
+  state.collapsedDetailIndustryIds.clear();
+}
+
 function relationsForCompanyByIndustry(companyId) {
   const grouped = new Map();
   for (const relation of companyRelations(companyId)) {
@@ -519,7 +618,8 @@ function searchableCompanies() {
     const aliasHit = company.aliases.some((alias) => compact(alias).includes(query));
     const fullNameHit = company.fullNames.some((name) => compact(name).includes(query));
     const codeHit = company.codes.some((code) => compact(code).includes(query));
-    return nameHit || aliasHit || fullNameHit || codeHit;
+    const initialHit = companyInitialScore(company, query) > 0;
+    return nameHit || aliasHit || fullNameHit || codeHit || initialHit;
   });
   const candidates = directMatches.length
     ? directMatches
@@ -532,9 +632,12 @@ function searchableCompanies() {
     const bExact = bn === query ? 1 : 0;
     const aPrefix = an.startsWith(query) ? 1 : 0;
     const bPrefix = bn.startsWith(query) ? 1 : 0;
+    const aInitial = companyInitialScore(a, query);
+    const bInitial = companyInitialScore(b, query);
     return (
       bExact - aExact ||
       bPrefix - aPrefix ||
+      bInitial - aInitial ||
       b.industryIds.length - a.industryIds.length ||
       b.relationIds.length - a.relationIds.length ||
       a.name.localeCompare(b.name, "zh")
@@ -563,6 +666,7 @@ function renderCompanies() {
   const companies = searchableCompanies();
   if (state.selectedCompanyId && !companies.some((company) => company.id === state.selectedCompanyId)) {
     state.selectedCompanyId = "";
+    resetDetailView();
   }
 
   if (!companies.length) {
@@ -593,7 +697,9 @@ function renderCompanies() {
 
   els.companyList.querySelectorAll(".company-card").forEach((button) => {
     button.addEventListener("click", () => {
-      state.selectedCompanyId = button.dataset.company;
+      const nextCompanyId = button.dataset.company;
+      if (state.selectedCompanyId !== nextCompanyId) resetDetailView();
+      state.selectedCompanyId = nextCompanyId;
       state.selectedNodeId = "";
       state.expandedIndustryIds.clear();
       state.expandedNodeIds.clear();
@@ -757,6 +863,8 @@ function getOrCreateEditCompany() {
       industryIds: [],
       industries: [],
       relationIds: [],
+      initials: pinyinInitialValues([typedName]),
+      initialText: compact(pinyinInitialValues([typedName]).join(" ")),
       searchText: compact(typedName),
     };
     DATA.companies.push(company);
@@ -878,6 +986,7 @@ function saveRelationFromModal() {
   recalculateAll();
   state.selectedCompanyId = company.id;
   state.selectedNodeId = node.id;
+  resetDetailView();
   state.expandedIndustryIds.clear();
   state.expandedNodeIds.clear();
   expandCompanyPaths(company.id);
@@ -904,6 +1013,7 @@ function deleteRelation(relationId) {
   });
   if (state.selectedCompanyId && !companiesById.get(state.selectedCompanyId)?.relationIds.length) {
     state.selectedCompanyId = "";
+    resetDetailView();
   }
   update();
 }
@@ -1262,27 +1372,36 @@ function renderDetail() {
     return;
   }
 
-  const selectedNodePanel = node ? renderSelectedNodePanel(node) : "";
+  const standaloneSelectedNodePanel = node ? renderSelectedNodePanel(node) : "";
   if (!company) {
-    els.detailPanel.innerHTML = selectedNodePanel;
+    els.detailPanel.innerHTML = standaloneSelectedNodePanel;
     return;
   }
 
   const groups = relationsForCompanyByIndustry(company.id);
+  const activeDetailIndustryId = groups.some(([industryId]) => industryId === state.detailIndustryFilterId)
+    ? state.detailIndustryFilterId
+    : "";
+  if (state.detailIndustryFilterId && !activeDetailIndustryId) {
+    state.detailIndustryFilterId = "";
+  }
   const industrySummary = groups
     .map(([industryId, relations]) => {
       const industry = industriesById.get(industryId);
-      return `<div class="path-summary" ${themeStyle(industryId)}>
+      const active = industryId === activeDetailIndustryId ? "active" : "";
+      return `<button class="path-summary ${active}" type="button" data-detail-industry="${escapeHtml(industryId)}" aria-pressed="${active ? "true" : "false"}" ${themeStyle(industryId)}>
         <strong>${escapeHtml(industry?.name || "")}</strong>
         <span>${relations.length}</span>
-      </div>`;
+      </button>`;
     })
     .join("");
 
-  const selectedNodeRelations = node
+  const showSelectedNode = node && (!activeDetailIndustryId || node.industryId === activeDetailIndustryId);
+  const selectedNodePanel = showSelectedNode ? renderSelectedNodePanel(node) : "";
+  const selectedNodeRelations = showSelectedNode
     ? companyRelations(company.id).filter((relation) => relation.nodeId === node.id)
     : [];
-  const selectedNodeReasons = node
+  const selectedNodeReasons = showSelectedNode
     ? `<section class="detail-section current-branch-detail" ${themeStyle(node.industryId)}>
         <div class="section-head">
           <h2>当前分支解释</h2>
@@ -1297,14 +1416,18 @@ function renderDetail() {
     : "";
 
   const industrySections = groups
+    .filter(([industryId]) => !activeDetailIndustryId || industryId === activeDetailIndustryId)
     .map(([industryId, relations]) => {
       const industry = industriesById.get(industryId);
-      return `<section class="detail-section industry-detail" ${themeStyle(industryId)}>
+      const collapsed = state.collapsedDetailIndustryIds.has(industryId);
+      return `<section class="detail-section industry-detail ${collapsed ? "collapsed" : ""}" ${themeStyle(industryId)}>
         <div class="section-head">
           <h2>${escapeHtml(industry?.name || "")}</h2>
-          <span class="count-pill">${relations.length} 分支</span>
+          <button class="count-pill detail-toggle" type="button" data-toggle-detail-industry="${escapeHtml(industryId)}" aria-expanded="${collapsed ? "false" : "true"}">
+            <span class="section-toggle">${collapsed ? "▸" : "▾"}</span>${relations.length} 分支
+          </button>
         </div>
-        ${relations.map((relation) => relationCard(relation)).join("")}
+        ${collapsed ? "" : `<div class="industry-detail-body">${relations.map((relation) => relationCard(relation)).join("")}</div>`}
       </section>`;
     })
     .join("");
@@ -1360,6 +1483,28 @@ els.saveOnlineBtn.addEventListener("click", () => {
 });
 
 els.detailPanel.addEventListener("click", (event) => {
+  const detailIndustryButton = event.target.closest("[data-detail-industry]");
+  if (detailIndustryButton) {
+    const industryId = detailIndustryButton.dataset.detailIndustry;
+    state.detailIndustryFilterId = state.detailIndustryFilterId === industryId ? "" : industryId;
+    state.selectedNodeId = "";
+    renderTree();
+    renderDetail();
+    return;
+  }
+
+  const toggleIndustryButton = event.target.closest("[data-toggle-detail-industry]");
+  if (toggleIndustryButton) {
+    const industryId = toggleIndustryButton.dataset.toggleDetailIndustry;
+    if (state.collapsedDetailIndustryIds.has(industryId)) {
+      state.collapsedDetailIndustryIds.delete(industryId);
+    } else {
+      state.collapsedDetailIndustryIds.add(industryId);
+    }
+    renderDetail();
+    return;
+  }
+
   const editButton = event.target.closest("[data-edit-relation]");
   if (editButton) {
     openRelationModal({ relationId: editButton.dataset.editRelation });
@@ -1447,7 +1592,9 @@ els.confirmTokenBtn.addEventListener("click", () => {
 els.searchInput.addEventListener("input", (event) => {
   state.query = event.target.value;
   const results = searchableCompanies();
-  state.selectedCompanyId = state.query ? results[0]?.id || "" : "";
+  const nextCompanyId = state.query ? results[0]?.id || "" : "";
+  if (state.selectedCompanyId !== nextCompanyId) resetDetailView();
+  state.selectedCompanyId = nextCompanyId;
   state.selectedNodeId = "";
   state.expandedIndustryIds.clear();
   state.expandedNodeIds.clear();
@@ -1464,6 +1611,7 @@ els.resetBtn.addEventListener("click", () => {
   state.query = "";
   state.selectedCompanyId = "";
   state.selectedNodeId = "";
+  resetDetailView();
   state.expandedIndustryIds.clear();
   state.expandedNodeIds.clear();
   els.searchInput.value = "";
