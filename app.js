@@ -7,6 +7,29 @@ const GITHUB_CONFIG = {
   filePath: "all-industries-data.js",
 };
 
+const INDUSTRY_THEMES = [
+  { hue: 172, saturation: 58, lightness: 31 },
+  { hue: 212, saturation: 62, lightness: 43 },
+  { hue: 252, saturation: 47, lightness: 45 },
+  { hue: 194, saturation: 66, lightness: 37 },
+  { hue: 286, saturation: 43, lightness: 45 },
+  { hue: 18, saturation: 66, lightness: 44 },
+  { hue: 154, saturation: 55, lightness: 35 },
+  { hue: 354, saturation: 56, lightness: 48 },
+  { hue: 226, saturation: 59, lightness: 44 },
+  { hue: 142, saturation: 42, lightness: 34 },
+  { hue: 48, saturation: 67, lightness: 35 },
+  { hue: 185, saturation: 57, lightness: 37 },
+  { hue: 32, saturation: 67, lightness: 39 },
+  { hue: 326, saturation: 48, lightness: 45 },
+  { hue: 176, saturation: 46, lightness: 35 },
+  { hue: 266, saturation: 46, lightness: 48 },
+  { hue: 199, saturation: 61, lightness: 42 },
+  { hue: 296, saturation: 39, lightness: 44 },
+  { hue: 82, saturation: 47, lightness: 35 },
+  { hue: 340, saturation: 54, lightness: 47 },
+];
+
 const ORIGINAL_DATA_TEXT = serializeData(DATA);
 let lastSyncedDataText = ORIGINAL_DATA_TEXT;
 
@@ -124,6 +147,35 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function themeForIndustry(value) {
+  const industry =
+    typeof value === "object"
+      ? value
+      : DATA.industries.find((item) => item.id === value || item.name === value);
+  const index = industry ? DATA.industries.findIndex((item) => item.id === industry.id) : 0;
+  return INDUSTRY_THEMES[(index >= 0 ? index : 0) % INDUSTRY_THEMES.length];
+}
+
+function themeVars(value, depth = 0) {
+  const theme = themeForIndustry(value);
+  const level = Math.max(0, Number(depth) || 0);
+  const nodeLight = Math.max(88, 98 - level * 2.3);
+  const nodeLineLight = Math.max(64, nodeLight - 16);
+  return [
+    `--theme: hsl(${theme.hue} ${theme.saturation}% ${theme.lightness}%)`,
+    `--theme-strong: hsl(${theme.hue} ${Math.min(theme.saturation + 10, 78)}% ${Math.max(theme.lightness - 10, 24)}%)`,
+    `--theme-soft: hsl(${theme.hue} ${Math.max(theme.saturation - 2, 30)}% 94%)`,
+    `--theme-softer: hsl(${theme.hue} ${Math.max(theme.saturation - 8, 28)}% 97%)`,
+    `--theme-line: hsl(${theme.hue} ${Math.min(theme.saturation + 4, 74)}% 76%)`,
+    `--node-bg: hsl(${theme.hue} ${Math.max(theme.saturation - 8, 28)}% ${nodeLight}%)`,
+    `--node-line: hsl(${theme.hue} ${Math.min(theme.saturation + 8, 78)}% ${nodeLineLight}%)`,
+  ].join("; ");
+}
+
+function themeStyle(value, depth = 0) {
+  return `style="${themeVars(value, depth)}"`;
 }
 
 function unique(values) {
@@ -524,10 +576,11 @@ function renderCompanies() {
       const active = company.id === state.selectedCompanyId ? "active" : "";
       const chips = company.industries
         .slice(0, 3)
-        .map((industry) => `<span class="chip">${escapeHtml(industry)}</span>`)
+        .map((industry) => `<span class="chip theme-chip" ${themeStyle(industry)}>${escapeHtml(industry)}</span>`)
         .join("");
       const more = company.industries.length > 3 ? `<span class="chip muted-chip">+${company.industries.length - 3}</span>` : "";
-      return `<button class="company-card ${active}" type="button" data-company="${escapeHtml(company.id)}">
+      const companyTheme = company.industryIds[0] || company.industries[0] || "";
+      return `<button class="company-card ${active}" type="button" data-company="${escapeHtml(company.id)}" ${themeStyle(companyTheme)}>
         <div class="company-main">
           <strong>${escapeHtml(company.name)}</strong>
           <span class="count-pill">${company.industries.length} 子表</span>
@@ -1011,7 +1064,7 @@ function renderTreeNode(node) {
     ? `<span class="node-toggle" title="${isExpanded ? "收起子分支" : "展开子分支"}">${isExpanded ? "▾" : "▸"}</span>`
     : '<span class="node-toggle leaf"></span>';
   return `<li>
-    <button class="${classes.join(" ")}" type="button" data-node="${escapeHtml(node.id)}">
+    <button class="${classes.join(" ")}" type="button" data-node="${escapeHtml(node.id)}" ${themeStyle(node.industryId, node.depth)}>
       <span class="node-title">
         ${toggle}
         <span class="node-label">${escapeHtml(node.label)}</span>
@@ -1039,7 +1092,7 @@ function renderTree() {
         (relation) => relation.industryId === industry.id,
       );
       const isExpanded = state.expandedIndustryIds.has(industry.id);
-      return `<section class="industry-tree">
+      return `<section class="industry-tree" ${themeStyle(industry)}>
         <button class="industry-title" type="button" data-industry="${escapeHtml(industry.id)}">
           <div class="industry-title-main">
             <span class="industry-toggle" title="${isExpanded ? "收起产业分支" : "展开产业分支"}">${isExpanded ? "▾" : "▸"}</span>
@@ -1111,7 +1164,7 @@ function relationCard(relation) {
   const note = relation.comment
     ? escapeHtml(relation.comment).replaceAll("\n", "<br>")
     : "Excel 里这个单元格有标记，但没有写批注。";
-  return `<article class="reason-card">
+  return `<article class="reason-card" ${themeStyle(relation.industryId)}>
     <div class="reason-head">
       <strong>${escapeHtml(relation.pathLabel)}</strong>
       <span>${escapeHtml(relation.cell)}</span>
@@ -1125,7 +1178,7 @@ function branchRelationCard(relation) {
   const note = relation.comment
     ? escapeHtml(relation.comment).replaceAll("\n", "<br>")
     : "Excel 里这个单元格有标记，但没有写批注。";
-  return `<article class="branch-reason-card">
+  return `<article class="branch-reason-card" ${themeStyle(relation.industryId)}>
     <div class="branch-reason-head">
       <strong>${escapeHtml(relation.companyName)}</strong>
       <span>${escapeHtml(relation.cell)}</span>
@@ -1159,7 +1212,7 @@ function renderSelectedNodePanel(node) {
   const direct = relationsByNode.get(node.id) || [];
   const branchRelations = descendantRelationsForNode(node);
   const directCount = unique(direct.map((relation) => relation.companyId)).length;
-  return `<section class="detail-section selected-branch">
+  return `<section class="detail-section selected-branch" ${themeStyle(node.industryId)}>
     <div class="section-head">
       <h2>${escapeHtml(industry?.name || "")} / ${escapeHtml(node.pathLabel)}</h2>
       <span class="section-actions">
@@ -1219,7 +1272,7 @@ function renderDetail() {
   const industrySummary = groups
     .map(([industryId, relations]) => {
       const industry = industriesById.get(industryId);
-      return `<div class="path-summary">
+      return `<div class="path-summary" ${themeStyle(industryId)}>
         <strong>${escapeHtml(industry?.name || "")}</strong>
         <span>${relations.length}</span>
       </div>`;
@@ -1230,7 +1283,7 @@ function renderDetail() {
     ? companyRelations(company.id).filter((relation) => relation.nodeId === node.id)
     : [];
   const selectedNodeReasons = node
-    ? `<section class="detail-section">
+    ? `<section class="detail-section current-branch-detail" ${themeStyle(node.industryId)}>
         <div class="section-head">
           <h2>当前分支解释</h2>
           <span class="count-pill">${selectedNodeRelations.length}</span>
@@ -1246,7 +1299,7 @@ function renderDetail() {
   const industrySections = groups
     .map(([industryId, relations]) => {
       const industry = industriesById.get(industryId);
-      return `<section class="detail-section industry-detail">
+      return `<section class="detail-section industry-detail" ${themeStyle(industryId)}>
         <div class="section-head">
           <h2>${escapeHtml(industry?.name || "")}</h2>
           <span class="count-pill">${relations.length} 分支</span>
